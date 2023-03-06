@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Tilt from 'react-parallax-tilt';
 
 export default function Card(props) {
   const [pokemon, setPokemon] = useState({});
@@ -14,12 +15,15 @@ export default function Card(props) {
   }, []);
 
   return (
+    <Tilt tiltReverse={true}>
     <li
-      className={`${pokemon.type} py-20 sm:py-12 md:py-3 md:col-span-3 lg:col-span-2 shadow shadow-black rounded flex flex-col items-center`}
-    >
-      <img src={pokemon.img} className="bg-white" alt="pic of pokemon" />
+      className={`${pokemon.type} border border-gray-300 shadow-2xl rounded flex flex-col text-center gap-1` }
+      data-tilt data-tilt-max="50" data-tilt-speed="400"
+    >      
+      <img src={pokemon.img} className="bg-white rounded-t" alt="pic of pokemon" />
       <h1 name="pokemonName">{props.name}</h1>
-      <span className="p-1 my-2 bg-white rounded">{pokemon.type}</span>
+      <span className="p-1 mb-1 rounded-full mx-2 border border-gray-700 bg-white">{pokemon.type}</span>
     </li>
+    </Tilt>
   );
 }
